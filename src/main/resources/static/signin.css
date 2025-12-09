@@ -1,3 +1,15 @@
+/*----------------- police 'Orbitron' -------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* ---------------------- Variables de couleur et de police ------------------------- */
+:root {
+  --turquoise-soft: #40e0d0;
+  --gris-clair: #f7f7f7;
+  --font-futuriste: 'Orbitron', sans-serif;
+  --text-color: #333;
+}
+/*---------------------------------------STYLE de base importé et modifié--------------------*/
+
 html,
 body {
   height: 100%;
@@ -8,7 +20,11 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+
+  /* --------------------Fond gris clair+police------------------------------------ */
+  background-color: var(--gris-clair);
+  font-family: var(--font-futuriste);
+  color: var(--text-color);
 }
 
 .form-signin {
@@ -18,22 +34,49 @@ body {
   margin: auto;
 }
 
-.form-signin .checkbox {
+
+/* ---------------------------- Styles de personnalisation  ------------------------------------ */
+
+.card-title {
+  font-weight: 700 !important;
+  color: var(--turquoise-soft);
+}
+
+/* -------------------------------------Style du formulaire ----------------------------------------*/
+.card {
+  border-radius: 1rem !important;
+  box-shadow: 0 0.5rem 1rem rgba(64, 224, 208, 0.2) !important;
+}
+
+/* -------------------------------------------Focus des inputs------------------------------------------ */
+.form-control:focus {
+  border-color: var(--turquoise-soft);
+  box-shadow: 0 0 0 0.25rem rgba(64, 224, 208, 0.25);
+}
+
+/* ----------------------------------------Bouton principal (Sign up) -------------------------------------*/
+.btn-primary {
+  background-color: var(--turquoise-soft);
+  border-color: var(--turquoise-soft);
+  font-family: var(--font-futuriste);
   font-weight: 400;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #36c1b3;
+  border-color: #36c1b3;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+/* ---------------------------------------Bouton secondaire (Cancel) -------------------------------*/
+.btn-secondary {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: var(--text-color);
 }
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #bbb;
+  border-color: #bbb;
 }

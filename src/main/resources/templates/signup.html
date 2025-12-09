@@ -20,8 +20,10 @@
 
                 <!-- Form section -->
                 <div class="card-body p-4 p-sm-5">
-                    <h4 class="card-title text-center mb-5 fw-light fs-5">Sign up</h4>
-
+                    <div class="text-center mb-4">
+                        <img th:src="@{/img/Gemini_Generated_Image_7im9xj7im9xj7im9.png}" alt="Logo Flash Cash" class="img-fluid" style="max-width: 150px; height: auto;">
+                        <h4 class="card-title text-center mt-3 fw-light fs-5">Sign up</h4>
+                    </div>
                     <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
 
                         <!-- First name -->
