@@ -3,6 +3,8 @@ package org.ximenia.flashcash.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class User {
@@ -16,7 +18,7 @@ public class User {
     private String email;
     private String password;
     @ManyToMany
-    private List<link> links;
+    private List<Link> links;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserAccount account;
 }

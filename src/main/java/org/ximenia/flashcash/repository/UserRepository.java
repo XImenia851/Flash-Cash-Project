@@ -1,11 +1,10 @@
 package org.ximenia.flashcash.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.ximenia.flashcash.model.User;
 
 import java.util.Optional;
 
-public class UserRepository {
-    public Optional<User> findUserByMails(String s) {
-
-    }
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
 }

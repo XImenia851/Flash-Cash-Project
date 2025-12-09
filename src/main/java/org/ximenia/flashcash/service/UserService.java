@@ -1,4 +1,29 @@
 package org.ximenia.flashcash.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.ximenia.flashcash.model.User;
+import org.ximenia.flashcash.repository.UserRepository;
+import org.ximenia.flashcash.service.form.SignUpForm;
+
+@Service
 public class UserService {
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public void registration(SignUpForm form) {
+        User user = new User();
+        user.setEmail(form.getEmail());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setBalance(0.0); //
+
+        userRepository.save(user);
+    }
 }

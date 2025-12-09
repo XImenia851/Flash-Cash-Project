@@ -1,11 +1,17 @@
 package org.ximenia.flashcash.controller;
 
-import ch.qos.logback.core.model.Model;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model; // CORRECTION ICI
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.ximenia.flashcash.model.User;
+import org.ximenia.flashcash.service.LinkService;
+import org.ximenia.flashcash.service.SessionService;
+import org.ximenia.flashcash.service.TransferService;
+import org.ximenia.flashcash.service.UserService;
+import org.ximenia.flashcash.service.form.SignUpForm;
 
 @Controller
 public class UserController {
@@ -25,5 +31,16 @@ public class UserController {
     public ModelAndView home(Model model) {
         User user = sessionService.sessionUser();
         return new ModelAndView("home", "user", user);
+    }
+
+    @GetMapping("/signup")
+    public ModelAndView showSignUpForm() {
+        return new ModelAndView("signup", "signUpForm", new SignUpForm());
+    }
+
+    @PostMapping("/signup") // CORRECTION : ajout du chemin
+    public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form) {
+        userService.registration(form);
+        return new ModelAndView("redirect:/signin");
     }
 }
