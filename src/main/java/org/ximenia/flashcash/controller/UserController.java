@@ -33,14 +33,15 @@ public class UserController {
         return new ModelAndView("home", "user", user);
     }
 
+    //send signup template with instance of signUp form
     @GetMapping("/signup")
     public ModelAndView showSignUpForm() {
         return new ModelAndView("signup", "signUpForm", new SignUpForm());
     }
 
-    @PostMapping("/signup") // CORRECTION : ajout du chemin
+    @PostMapping("/signup")
     public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form) {
         userService.registration(form);
-        return new ModelAndView("redirect:/signin");
+        return new ModelAndView("signin");
     }
 }

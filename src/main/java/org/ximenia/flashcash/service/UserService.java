@@ -8,6 +8,7 @@ import org.ximenia.flashcash.service.form.SignUpForm;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -22,7 +23,6 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setBalance(0.0); //
 
         userRepository.save(user);
     }

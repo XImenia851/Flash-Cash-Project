@@ -19,7 +19,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/bootstrap.min.css", "/index.css", "/images/**", "/signin", "/signup")
+                        .requestMatchers("/bootstrap.min.css","/index.css", "/images/**","/signin", "/signup")
                         .permitAll()
                         .anyRequest().authenticated()
                 )
@@ -30,4 +30,4 @@ public class SecurityConfig {
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
-    }
+}

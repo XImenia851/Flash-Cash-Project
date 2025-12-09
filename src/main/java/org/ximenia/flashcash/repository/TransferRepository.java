@@ -9,5 +9,10 @@ import java.util.List;
 
 @Repository
 public interface TransferRepository extends JpaRepository<Transfer, Integer> {
-    List<Transfer> findByFromOrToOrder(User from, User to);
+
+    // Tous les transferts où l'utilisateur est expéditeur ou destinataire
+    List<Transfer> findByFromOrTo(User from, User to);
+
+    // Optionnel : triés par date décroissante
+    List<Transfer> findByFromOrToOrderByDateDesc(User from, User to);
 }

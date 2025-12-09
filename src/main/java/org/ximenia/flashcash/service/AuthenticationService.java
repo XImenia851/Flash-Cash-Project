@@ -8,9 +8,11 @@ import org.ximenia.flashcash.model.User;
 import org.ximenia.flashcash.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class AuthenticationService implements UserDetailsService {
+
     private final UserRepository userRepository;
 
     public AuthenticationService(UserRepository userRepository) {
@@ -18,14 +20,12 @@ public class AuthenticationService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                new ArrayList<>()
-        );
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        Optional<User> user = userRepository
+                .findUserByEmail(s);
+        if (user.isPresent()) {
+            return new org.springframework.security.core.userdetails.User(user.get().getEmail(), user.get().getPassword(), new ArrayList<>());
+        }
+        throw new UsernameNotFoundException(s);
     }
 }

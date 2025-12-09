@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="signup form">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    <title>Sign up</title>
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+</head>
+
+<body class="signup-form">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+
+                <!-- Form section -->
+                <div class="card-body p-4 p-sm-5">
+                    <h4 class="card-title text-center mb-5 fw-light fs-5">Sign up</h4>
+
+                    <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
+
+                        <!-- First name -->
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   th:field="*{firstName}"
+                                   class="form-control"
+                                   id="floatingFirstName"
+                                   placeholder="First Name">
+                            <label for="floatingFirstName">First Name</label>
+                        </div>
+
+                        <!-- Last name -->
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   th:field="*{lastName}"
+                                   class="form-control"
+                                   id="floatingLastName"
+                                   placeholder="Last Name">
+                            <label for="floatingLastName">Last Name</label>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-floating mb-3">
+                            <input type="email"
+                                   th:field="*{email}"
+                                   class="form-control"
+                                   id="floatingEmail"
+                                   placeholder="name@example.com">
+                            <label for="floatingEmail">Email</label>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-floating mb-3">
+                            <input type="password"
+                                   th:field="*{password}"
+                                   class="form-control"
+                                   id="floatingPassword"
+                                   placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Sign up
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

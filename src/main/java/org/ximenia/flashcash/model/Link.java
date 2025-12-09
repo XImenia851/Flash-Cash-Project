@@ -9,8 +9,11 @@ public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @ManyToMany
-    User user1;
-    @ManyToMany
-    User user2;
+    @ManyToOne
+    @JoinColumn(name = "user1_id")
+    private User user1;
+    @ManyToOne
+    @JoinColumn(name = "user2_id")
+    private User user2;
+
 }
