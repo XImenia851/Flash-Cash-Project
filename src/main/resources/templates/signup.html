@@ -9,7 +9,7 @@
     <title>Sign up</title>
 
     <link th:href="@{/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/signup.css}" rel="stylesheet">
+    <link th:href="@{/signin.css}" rel="stylesheet">
 </head>
 
 <body class="signup-form">
@@ -28,52 +28,52 @@
 
                         <!-- First name -->
                         <div class="form-floating mb-3">
+                            <label for="floatingFirstName">First Name</label>
                             <input type="text"
                                    th:field="*{firstName}"
                                    class="form-control"
                                    id="floatingFirstName"
                                    placeholder="First Name">
-                            <label for="floatingFirstName">First Name</label>
                         </div>
 
                         <!-- Last name -->
                         <div class="form-floating mb-3">
+                            <label for="floatingLastName">Last Name</label>
                             <input type="text"
                                    th:field="*{lastName}"
                                    class="form-control"
                                    id="floatingLastName"
                                    placeholder="Last Name">
-                            <label for="floatingLastName">Last Name</label>
                         </div>
 
                         <!-- Email -->
                         <div class="form-floating mb-3">
+                            <label for="floatingEmail">Email</label>
                             <input type="email"
                                    th:field="*{email}"
                                    class="form-control"
                                    id="floatingEmail"
                                    placeholder="name@example.com">
-                            <label for="floatingEmail">Email</label>
                         </div>
 
                         <!-- Password -->
                         <div class="form-floating mb-3">
+                            <label for="floatingPassword">Password</label>
                             <input type="password"
                                    th:field="*{password}"
                                    class="form-control"
                                    id="floatingPassword"
                                    placeholder="Password">
-                            <label for="floatingPassword">Password</label>
                         </div>
 
                         <!-- Password confirmation-->
                         <div class="form-floating mb-3">
+                            <label for="floatingPassword">Confirm password</label>
                             <input type="password"
                                    th:field="*{password}"
                                    class="form-control"
                                    id="floatingPassword"
                                    placeholder="Password">
-                            <label for="floatingPassword">Confirm password</label>
                         </div>
 
                         <!-- Buttons -->

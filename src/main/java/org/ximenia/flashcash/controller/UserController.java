@@ -34,7 +34,7 @@ public class UserController {
         return new ModelAndView("home", "user", user);
     }
 
-    //send signup template with instance of signUp form
+    // signup template with instance of SIGN UP form
     @GetMapping("/signup")
     public ModelAndView showSignUpForm() {
         return new ModelAndView("signup", "signUpForm", new SignUpForm());
@@ -46,15 +46,17 @@ public class UserController {
         return new ModelAndView("signup");
     }
 
-    //--------------------------------Sign in get and post--------------------------
+    //--------------------------------Sign in get--------------------------
     @GetMapping("/signin")
     public ModelAndView showSignInForm(){
         return new ModelAndView("signin", "signInForm", new SignInForm());
     }
 
-    @PostMapping("/signin")
-    public ModelAndView processRequest(@ModelAttribute("signInForm") SignInForm form) {
-        userService.registration(form);
-        return new ModelAndView("signIn");
+    //-------------------------------------Profil user -------------------------------
+    @GetMapping("/profil")
+    public String showProfil(Model model) {
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user); // envoie à Thymeleaf
+        return "profil";
     }
 }

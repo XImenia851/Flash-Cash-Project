@@ -9,7 +9,7 @@
   --card-bg: #66e0da;
   --font-futuriste: 'Orbitron', sans-serif;
   --text-color: #000000;
-  --shadow-glow: rgba(64, 224, 208, 0.3);
+  --shadow-glow: rgba(95, 249, 255, 0.59);
 }
 
 /*---------------------------------------Styles de base--------------------*/
@@ -68,6 +68,21 @@ body::before {
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px var(--shadow-glow);
+}
+
+/* -------------------------Lien d'inscription ---------------------*/
+a {
+  color: var(--turquoise-bright);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px var(--shadow-glow);
+}
+
+a:hover {
+  color: var(--turquoise-soft);
+  text-decoration: underline;
   text-shadow: 0 0 20px var(--shadow-glow);
 }
 
