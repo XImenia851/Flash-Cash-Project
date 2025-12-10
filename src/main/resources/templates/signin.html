@@ -6,13 +6,13 @@
     <meta name="description" content="signup form">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Sign up</title>
+    <title>Sign In</title>
 
     <link th:href="@{/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/signup.css}" rel="stylesheet">
+    <link th:href="@{/signin.css}" rel="stylesheet">
 </head>
 
-<body class="signup-form">
+<body class="signin-form">
 <div class="container">
     <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
@@ -22,29 +22,10 @@
                 <div class="card-body p-4 p-sm-5">
                     <div class="text-center mb-4">
                         <img th:src="@{/images/Gemini_Generated_Image_7im9xj7im9xj7im9-removebg-preview.png}" alt="Logo Flash Cash" class="img-fluid">
-                        <h4 class="card-title text-center mt-3 fw-light fs-5">Sign up</h4>
+                        <h4 class="card-title text-center mt-3 fw-light fs-5">Sign In</h4>
                     </div>
-                    <form th:action="@{/signup}" th:object="${signUpForm}" method="POST">
+                    <form th:action="@{/signin}" th:object="${signInForm}" method="POST">
 
-                        <!-- First name -->
-                        <div class="form-floating mb-3">
-                            <input type="text"
-                                   th:field="*{firstName}"
-                                   class="form-control"
-                                   id="floatingFirstName"
-                                   placeholder="First Name">
-                            <label for="floatingFirstName">First Name</label>
-                        </div>
-
-                        <!-- Last name -->
-                        <div class="form-floating mb-3">
-                            <input type="text"
-                                   th:field="*{lastName}"
-                                   class="form-control"
-                                   id="floatingLastName"
-                                   placeholder="Last Name">
-                            <label for="floatingLastName">Last Name</label>
-                        </div>
 
                         <!-- Email -->
                         <div class="form-floating mb-3">
@@ -64,16 +45,6 @@
                                    id="floatingPassword"
                                    placeholder="Password">
                             <label for="floatingPassword">Password</label>
-                        </div>
-
-                        <!-- Password confirmation-->
-                        <div class="form-floating mb-3">
-                            <input type="password"
-                                   th:field="*{password}"
-                                   class="form-control"
-                                   id="floatingPassword"
-                                   placeholder="Password">
-                            <label for="floatingPassword">Confirm password</label>
                         </div>
 
                         <!-- Buttons -->

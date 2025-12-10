@@ -11,6 +11,7 @@ import org.ximenia.flashcash.service.LinkService;
 import org.ximenia.flashcash.service.SessionService;
 import org.ximenia.flashcash.service.TransferService;
 import org.ximenia.flashcash.service.UserService;
+import org.ximenia.flashcash.service.form.SignInForm;
 import org.ximenia.flashcash.service.form.SignUpForm;
 
 @Controller
@@ -42,6 +43,18 @@ public class UserController {
     @PostMapping("/signup")
     public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form) {
         userService.registration(form);
-        return new ModelAndView("signin");
+        return new ModelAndView("signup");
+    }
+
+    //--------------------------------Sign in get and post--------------------------
+    @GetMapping("/signin")
+    public ModelAndView showSignInForm(){
+        return new ModelAndView("signin", "signInForm", new SignInForm());
+    }
+
+    @PostMapping("/signin")
+    public ModelAndView processRequest(@ModelAttribute("signInForm") SignInForm form) {
+        userService.registration(form);
+        return new ModelAndView("signIn");
     }
 }

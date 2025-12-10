@@ -1,0 +1,249 @@
+/*----------------- Police 'Orbitron' -------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+
+/* ---------------------- Variables ------------------------- */
+:root {
+    --turquoise-soft: #074943;
+    --turquoise-bright: #54d9cc;
+    --gris-bleu: #3c4f4c;
+    --card-bg: #66e0da;
+    --font-futuriste: 'Orbitron', sans-serif;
+    --text-color: #000000;
+    --shadow-glow: rgba(64, 224, 208, 0.3);
+}
+
+/*---------------------------------------Styles de base--------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-image: url('/images/montagnes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: var(--font-futuriste);
+    color: var(--text-color);
+    position: relative;
+}
+
+/* --------------------overlay pour la lisibilité ---------------------------*/
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 60%;
+    z-index: 0;
+}
+
+
+.form-signup {
+    width: 100%;
+    max-width: 420px;
+    padding: 0;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------------------------- Titre ------------------------------------ */
+.card-title {
+    font-weight: 900 !important;
+    color: var(--turquoise-soft);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px var(--shadow-glow);
+}
+
+/* ------------------- Logo Flash Cash ------------------ */
+.flash-cash-logo {
+    width: 2.5rem;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(64, 224, 208, 0.8), 0 0 50px rgba(64, 224, 208, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flash-cash-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 35px rgba(64, 224, 208, 1), 0 0 70px rgba(64, 224, 208, 0.6);
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    width: 350px;
+    margin-top: -100px ;
+    margin-bottom: -80px;
+    filter: drop-shadow(0 10px 30px rgba(64, 224, 208, 0.3));
+}
+
+/* -------------------------------------Carte du formulaire ----------------------------------------*/
+.card {
+    border-radius: 2rem;
+    box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.5),
+            0 0 40px var(--shadow-glow),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: linear-gradient(145deg, rgba(102, 224, 218, 0.60) 0%, rgba(77, 212, 206, 0.60) 100%);
+    border: 2px solid rgba(64, 224, 208, 0.3);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+.card-body {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem;
+}
+
+/* -------------------------------------------Inputs------------------------------------------ */
+.form-control {
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-futuriste);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------------------------------Boutons -------------------------------------*/
+.btn {
+    border-radius: 1rem;
+    padding: 0.75rem 2rem;
+    font-family: var(--font-futuriste);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* -----------------------Bouton principal (Sign up)---------------------------- */
+.btn-primary {
+    background: linear-gradient(135deg, var(--turquoise-soft) 0%, var(--turquoise-bright) 100%);
+    color: white;
+    box-shadow:
+            0 8px 20px rgba(7, 73, 67, 0.4),
+            0 0 20px var(--shadow-glow);
+    position: relative;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: linear-gradient(135deg, var(--turquoise-bright) 0%, var(--turquoise-soft) 100%);
+    transform: translateY(-3px);
+    box-shadow:
+            0 12px 30px rgba(7, 73, 67, 0.5),
+            0 0 30px var(--shadow-glow);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* ---------------------Bouton secondaire (Cancel) -----------------------------*/
+.btn-secondary {
+    background: linear-gradient(135deg, #d0d0d0 0%, #a8a8a8 100%);
+    color: var(--text-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background: linear-gradient(135deg, #bbb 0%, #999 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+/* -------------------Groupe de boutons---------------------- */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+/* ----------------------------------------Responsive ----------------------------------------*/
+@media (max-width: 576px) {
+    .form-signup {
+        max-width: 100%;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .img-fluid {
+        width: 280px;
+        margin-bottom: -60px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+}
