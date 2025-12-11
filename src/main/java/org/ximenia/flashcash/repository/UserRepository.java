@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String email);
+    Optional<User> findByEmail(String email); // Email de session
 
     Optional<User> findUserByEmail(String email); // email correspond au champ 'email' dans User
 }

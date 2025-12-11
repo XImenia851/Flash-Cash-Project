@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.ximenia.flashcash.model.User;
 import org.ximenia.flashcash.model.UserAccount;
 import org.ximenia.flashcash.repository.UserRepository;
+import org.ximenia.flashcash.service.form.SignInForm;
 import org.ximenia.flashcash.service.form.SignUpForm;
 
 @Service

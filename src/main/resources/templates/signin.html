@@ -24,26 +24,20 @@
                         <img th:src="@{/images/Gemini_Generated_Image_7im9xj7im9xj7im9-removebg-preview.png}" alt="Logo Flash Cash" class="img-fluid">
                         <h4 class="card-title text-center mt-3 fw-light fs-5">Sign In</h4>
                     </div>
-                    <form th:action="@{/signin}" th:object="${signInForm}" method="POST">
+                    <form th:action="@{/signin}" method="POST">
 
                         <!-- Email -->
                         <div class="form-floating mb-3">
-                            <label for="floatingEmail">Email</label>
                             <input type="email"
-                                   th:field="*{email}"
-                                   class="form-control"
-                                   id="floatingEmail"
-                                   placeholder="name@example.com">
+                                   name="email"
+                                   placeholder="E-mail" required autofocus>
                         </div>
 
                         <!-- Password -->
                         <div class="form-floating mb-3">
-                            <label for="floatingPassword">Password</label>
                             <input type="password"
-                                   th:field="*{password}"
                                    class="form-control"
-                                   id="floatingPassword"
-                                   placeholder="Password">
+                                   placeholder="Password" required>
                         </div>
 
                         <div>
@@ -58,6 +52,13 @@
                             <button type="submit" class="btn btn-primary">
                                 Sign In
                             </button>
+                        </div>
+
+                        <div th:if="${errorMessage}" style="color:red;">
+                            <p th:text="${errorMessage}"></p>
+                        </div>
+                        <div th:if="${successMessage}" style="color:green;">
+                            <p th:text="${successMessage}"></p>
                         </div>
 
                     </form>
