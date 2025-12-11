@@ -1,62 +1,52 @@
 package org.ximenia.flashcash.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model; // CORRECTION ICI
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.ximenia.flashcash.model.User;
-import org.ximenia.flashcash.service.LinkService;
-import org.ximenia.flashcash.service.SessionService;
-import org.ximenia.flashcash.service.TransferService;
 import org.ximenia.flashcash.service.UserService;
 import org.ximenia.flashcash.service.form.SignInForm;
 import org.ximenia.flashcash.service.form.SignUpForm;
 
 @Controller
 public class UserController {
-    private final LinkService linkService;
-    private final UserService userService;
-    private final TransferService transferService;
-    private final SessionService sessionService;
 
-    public UserController(LinkService linkService, UserService userService, TransferService transferService, SessionService sessionService) {
-        this.linkService = linkService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.transferService = transferService;
-        this.sessionService = sessionService;
     }
 
     @GetMapping("/")
-    public ModelAndView home(Model model) {
-        User user = sessionService.sessionUser();
-        return new ModelAndView("home", "user", user);
+    public ModelAndView homeRedirect() {
+        return new ModelAndView("redirect:/profil");
     }
 
-    // signup template with instance of SIGN UP form
+    // ----------------------------SIGN UP (GET)
     @GetMapping("/signup")
     public ModelAndView showSignUpForm() {
         return new ModelAndView("signup", "signUpForm", new SignUpForm());
     }
 
+    // ----------------------------------------SIGN UP (POST)
     @PostMapping("/signup")
-    public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form) {
+    public ModelAndView processSignUp(@ModelAttribute("signUpForm") SignUpForm form) {
         userService.registration(form);
-        return new ModelAndView("signup");
+        return new ModelAndView("redirect:/signin?success");
     }
 
-    //--------------------------------Sign in get--------------------------
+    // --------------------------------------SIGN IN (GET)
     @GetMapping("/signin")
-    public ModelAndView showSignInForm(){
+    public ModelAndView showSignInForm() {
         return new ModelAndView("signin", "signInForm", new SignInForm());
     }
 
-    //-------------------------------------Profil user -------------------------------
+    // -------------------------------------------PROFIL (GET)
     @GetMapping("/profil")
-    public String showProfil(Model model) {
+    public String profil(Model model) {
         User user = userService.getCurrentUser();
-        model.addAttribute("user", user); // envoie à Thymeleaf
+        model.addAttribute("user", user);
         return "profil";
     }
 }

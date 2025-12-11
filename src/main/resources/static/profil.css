@@ -21,8 +21,7 @@
 
 html,
 body {
-    overflow-x: hidden;
-    height: 100%;
+    font-size: .875rem;
 }
 
 body {
@@ -100,11 +99,11 @@ body::before {
 
 /* -------------------Logo ------------------ */
 .img-fluid {
-    display: block;
     max-width: 100%;
     height: auto;
     width: 350px;
-    margin: 0 auto -60px auto;
+    margin-top: -100px ;
+    margin-bottom: -80px;
     filter: drop-shadow(0 10px 30px rgba(64, 224, 208, 0.3));
 }
 

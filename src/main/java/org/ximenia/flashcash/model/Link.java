@@ -8,7 +8,7 @@ import lombok.Data;
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "user1_id")
     private User user1;

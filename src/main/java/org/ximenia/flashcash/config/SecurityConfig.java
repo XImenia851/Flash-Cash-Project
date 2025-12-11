@@ -6,9 +6,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.ximenia.flashcash.service.AuthenticationService;
 
 @Configuration
 public class SecurityConfig {
+
+    private final AuthenticationService authenticationService;
+
+    public SecurityConfig(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -16,23 +23,36 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/bootstrap.min.css", "/signin.css", "/profil.css", "/images/**", "/signin", "/signup")
-                        .permitAll()
-                        .anyRequest().authenticated()
+                .userDetailsService(authenticationService)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/bootstrap.min.css",
+                                "/signin.css",
+                                "/profil.css",
+                                "/images/**",
+                                "/signup",
+                                "/signin"
+                        ).permitAll()
+                        .requestMatchers("/profil").authenticated()
+                        .anyRequest().permitAll()
                 )
-                .formLogin((form) -> form
+                .formLogin(form -> form
                         .loginPage("/signin")
+                        .loginProcessingUrl("/signin")
                         .usernameParameter("email")
+                        .passwordParameter("password")
                         .defaultSuccessUrl("/profil", true)
                         .permitAll()
                 )
-                .logout((logout) -> logout
-                        .logoutSuccessUrl("/signin")
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/signin?logout")
                         .permitAll()
                 );
+
         return http.build();
     }
 }

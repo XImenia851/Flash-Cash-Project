@@ -20,6 +20,7 @@
                         <img th:src="@{/images/Gemini_Generated_Image_7im9xj7im9xj7im9-removebg-preview.png}"
                              alt="Logo Flash Cash" class="img-fluid">
                         <h4 class="card-title mt-3">Mon Profil</h4>
+                        <p>Bienvenue ! </p>
                     </div>
 
                     <!-- Informations personnelles -->
@@ -45,7 +46,7 @@
                         <div class="balance-card">
                             <p class="balance-label">Solde disponible</p>
                             <p class="balance-amount">
-                                <span th:text="${user.balance}">0.00</span> €
+                                <span th:text="${user.userAccount.amount}">0.00</span>
                             </p>
                         </div>
                     </div>
