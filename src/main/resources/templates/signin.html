@@ -36,6 +36,7 @@
                         <!-- Password -->
                         <div class="form-floating mb-3">
                             <input type="password"
+                                   name="password"
                                    class="form-control"
                                    placeholder="Password" required>
                         </div>
@@ -54,12 +55,12 @@
                             </button>
                         </div>
 
-                        <div th:if="${errorMessage}" style="color:red;">
-                            <p th:text="${errorMessage}"></p>
-                        </div>
-                        <div th:if="${successMessage}" style="color:green;">
-                            <p th:text="${successMessage}"></p>
-                        </div>
+<!--                        <div th:if="${errorMessage}" style="color:red;">-->
+<!--                            <p th:text="${errorMessage}"></p>-->
+<!--                        </div>-->
+<!--                        <div th:if="${successMessage}" style="color:green;">-->
+<!--                            <p th:text="${successMessage}"></p>-->
+<!--                        </div>-->
 
                     </form>
                 </div>

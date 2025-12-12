@@ -47,14 +47,20 @@ public class UserController {
         return new ModelAndView("signin", "signInForm", new SignInForm());
     }
 
+//    @PostMapping("/signin")
+//    public ModelAndView processSignIn(@ModelAttribute("signInForm") SignInForm form) {
+//        userService.registration(form);
+//        return new ModelAndView("redirect:/profil");
+//    }
+
 //     -------------------------------------------PROFIL (GET)
     @GetMapping("/profil")
-    public ModelAndView showProfil() {
-        return new ModelAndView("profil");
-    }
-//    public String profil(Model model) {
-//        User user = userService.getCurrentUser();
-//        model.addAttribute("user", user);
-//        return "profil";
+//    public ModelAndView showProfil() {
+//        return new ModelAndView("profil");
 //    }
+    public String profil(Model model) {
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user);
+        return "profil";
+    }
 }
