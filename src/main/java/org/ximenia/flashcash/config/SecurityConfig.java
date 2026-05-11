@@ -12,9 +12,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.ximenia.flashcash.service.AuthenticationService;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+    // Ajouter le bean injecté + la config
+    private final AuthenticationService authenticationService;
+
+    public SecurityConfig(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -37,7 +46,8 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
-        return http.build();
+    http.userDetailsService(authenticationService);
+    return http.build();
 
     }
 }

@@ -15,8 +15,10 @@ public class Transfer {
     private LocalDateTime date;
 
     @ManyToOne
+    @JoinColumn(name = "sender_id")
     private User from;
     @ManyToOne
+    @JoinColumn(name = "receiver_id")
     private User to;
     private Double amountBeforeFee;
     private Double amountAfterFee;
