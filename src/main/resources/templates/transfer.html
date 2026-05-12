@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transfert - Flash Cash</title>
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/profil.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <div class="card my-5 border-0 shadow rounded-3">
+                <div class="card-body p-4 p-sm-5">
+
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <img th:src="@{/images/Gemini_Generated_Image_7im9xj7im9xj7im9-removebg-preview.png}"
+                             alt="Logo Flash Cash" class="img-fluid">
+                        <h4 class="card-title mt-3">Envoyer de l'argent</h4>
+                    </div>
+
+                    <!-- Solde actuel -->
+                    <div class="profile-section mb-4">
+                        <div class="balance-card text-center">
+                            <p class="balance-label">Solde disponible</p>
+                            <p class="balance-amount">
+                                <span th:text="${user.userAccount.amount}">0.00</span> €
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Message succès -->
+                    <div th:if="${param.success}" class="alert alert-success">
+                        Transfert effectué avec succès !
+                    </div>
+
+                    <!-- Formulaire transfert -->
+                    <div class="profile-section mb-4">
+                        <h5 class="section-title">Nouveau transfert</h5>
+                        <form th:action="@{/transfer}" th:object="${transferForm}" method="POST">
+
+                            <!-- Sélection contact -->
+                            <div class="mb-3">
+                                <label for="recipientEmail" class="form-label">Destinataire</label>
+                                <select th:field="*{recipientEmail}"
+                                        class="form-select"
+                                        id="recipientEmail">
+                                    <option value="">-- Choisir un contact --</option>
+                                    <option th:each="contact : ${contacts}"
+                                            th:value="${contact.email}"
+                                            th:text="${contact.firstName + ' ' + contact.lastName}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <!-- Montant -->
+                            <div class="form-floating mb-3">
+                                <input type="number"
+                                       th:field="*{amount}"
+                                       class="form-control"
+                                       id="amount"
+                                       placeholder="Montant"
+                                       step="0.01" min="0.01">
+                                <label for="amount">Montant (€)</label>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-floating mb-3">
+                                <input type="text"
+                                       th:field="*{description}"
+                                       class="form-control"
+                                       id="description"
+                                       placeholder="Description">
+                                <label for="description">Description</label>
+                            </div>
+
+                            <small class="text-muted d-block mb-3">
+                                * Des frais de 0.5% sont appliqués sur chaque transfert.
+                            </small>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                Envoyer
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Historique -->
+                    <div class="profile-section mb-4">
+                        <h5 class="section-title">Historique des transferts</h5>
+
+                        <div th:if="${transfers.empty}" class="text-muted text-center py-3">
+                            Aucun transfert pour le moment.
+                        </div>
+
+                        <ul class="list-group" th:unless="${transfers.empty}">
+                            <li class="list-group-item" th:each="t : ${transfers}">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span th:if="${t.from.email == user.email}"
+                                              class="text-danger fw-bold">- <span th:text="${t.amountBeforeFee}"></span> €</span>
+                                        <span th:unless="${t.from.email == user.email}"
+                                              class="text-success fw-bold">+ <span th:text="${t.amountAfterFee}"></span> €</span>
+                                        <small class="text-muted d-block"
+                                               th:text="${t.from.email == user.email ?
+                                               'À : ' + t.to.firstName + ' ' + t.to.lastName :
+                                               'De : ' + t.from.firstName + ' ' + t.from.lastName}">
+                                        </small>
+                                    </div>
+                                    <small class="text-muted" th:text="${#temporals.format(t.date, 'dd/MM/yyyy HH:mm')}"></small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="d-flex gap-2">
+                        <a th:href="@{/profil}" class="btn btn-secondary w-100">Mon profil</a>
+                        <a th:href="@{/contact}" class="btn btn-secondary w-100">Mes contacts</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

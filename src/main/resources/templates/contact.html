@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacts - Flash Cash</title>
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/profil.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <div class="card my-5 border-0 shadow rounded-3">
+                <div class="card-body p-4 p-sm-5">
+
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <img th:src="@{/images/Gemini_Generated_Image_7im9xj7im9xj7im9-removebg-preview.png}"
+                             alt="Logo Flash Cash" class="img-fluid">
+                        <h4 class="card-title mt-3">Mes Contacts</h4>
+                    </div>
+
+                    <!-- Message succès -->
+                    <div th:if="${param.success}" class="alert alert-success">
+                        Contact ajouté avec succès !
+                    </div>
+
+                    <!-- Formulaire ajout contact -->
+                    <div class="profile-section mb-4">
+                        <h5 class="section-title">Ajouter un contact</h5>
+                        <form th:action="@{/contact}" th:object="${contactForm}" method="POST">
+                            <div class="form-floating mb-3">
+                                <input type="email"
+                                       th:field="*{email}"
+                                       class="form-control"
+                                       id="floatingEmail"
+                                       placeholder="Email du contact">
+                                <label for="floatingEmail">Email du contact</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                Ajouter
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Liste des contacts -->
+                    <div class="profile-section mb-4">
+                        <h5 class="section-title">Mes contacts</h5>
+
+                        <div th:if="${contacts.empty}" class="text-muted text-center py-3">
+                            Vous n'avez pas encore de contacts.
+                        </div>
+
+                        <ul class="list-group" th:unless="${contacts.empty}">
+                            <li class="list-group-item d-flex justify-content-between align-items-center"
+                                th:each="contact : ${contacts}">
+                                <div>
+                                    <span th:text="${contact.firstName + ' ' + contact.lastName}">Nom</span>
+                                    <small class="text-muted d-block" th:text="${contact.email}">email</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="d-flex gap-2">
+                        <a th:href="@{/profil}" class="btn btn-secondary w-100">Mon profil</a>
+                        <a th:href="@{/transfer}" class="btn btn-primary w-100">Envoyer de l'argent</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

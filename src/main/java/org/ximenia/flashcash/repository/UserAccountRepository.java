@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import org.ximenia.flashcash.model.UserAccount;
 
 @Repository
-public interface UserAccountRepository extends JpaRepository<UserAccount, Integer> {
+public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
 }
