@@ -53,12 +53,12 @@
 
                     <!-- Boutons d'action -->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/index'">
-                            Retour
-                        </button>
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/signin'">
-                            Déconnexion
-                        </button>
+                        <a th:href="@{/transfer}" class="btn btn-primary">Envoyer de l'argent</a>
+                        <a th:href="@{/contact}" class="btn btn-secondary">Mes contacts</a>
+                        <form th:action="@{/logout}" method="POST" class="d-inline">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <button type="submit" class="btn btn-danger">Déconnexion</button>
+                        </form>
                     </div>
 
                 </div>
