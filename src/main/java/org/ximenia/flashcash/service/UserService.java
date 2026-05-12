@@ -57,4 +57,10 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
     }
+    //-------------- AMOUNT METHOD ----------------------
+    public void addFunds(Double amount) {
+        User user = getCurrentUser();
+        user.getUserAccount().plus(amount);
+        userRepository.save(user);
+    }
 }

@@ -63,4 +63,10 @@ public class UserController {
         model.addAttribute("user", user);
         return "profil";
     }
+
+    @PostMapping("/profil/add-funds")
+    public ModelAndView addFunds(@RequestParam("amount") Double amount) {
+        userService.addFunds(amount);
+        return new ModelAndView("redirect:/profil?success");
+    }
 }
