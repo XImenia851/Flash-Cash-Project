@@ -194,7 +194,7 @@ The transfer is wrapped in a `@Transactional` method: if either operation (debit
 ## 👩‍💻 Author
 
 **Ximenia** — DWWM Level 5 Certification  
-Project supervised by professor **Aubry**
+Project supervised in my formation
 
 ---
 
